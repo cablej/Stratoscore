@@ -1,0 +1,331 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../Stylesheets/dropdownmenu.css" />
+<link rel="stylesheet" type="text/css" href="../Stylesheets/classic.css" />
+<link rel="icon" type="image/png" href="favicon.ico"/>
+<style type="text/css">
+    #updates {
+        /*background-color: rgba(255, 255, 255, 0.5);*/
+        width:50%;
+        border-radius: 15px;
+    }
+    
+    .names {
+        color:#ffffff;
+    }
+    
+
+	nav {
+	    margin-top:-150px;
+	}
+    
+    .table-wrapper {
+    	position:relative;
+        height:350px;
+        overflow:scroll;
+    }
+    
+    .inningChart td{
+    	padding: 3px;
+    	text-align:center;
+    }
+    
+</style>
+    <title>Play Game!</title>
+</head>
+<body onload="begin()">
+    <div id="load">
+        <center>
+            <img src="load.gif" style="margin-top:20%"/>
+            <p>Fetching data from the server...</p>
+            <p id='status'>...</p>
+        </center>
+    </div>
+    <div id="game" style="display:none;">
+        <center>
+        <div id="updates">
+            <b>
+            <p id="message">Welcome to Stratomatic! Select players to add to your lineup. When you have selected your lineup, you may select your pitcher. Press 'Submit Lineups' when your lineups are complete.</p>
+            <div id ="wait"><br /><br /><br /><br /><br /><br /><br /><br /></div>
+            <div id="scoreboard">
+                <p id="score">The score paragraph.</p>
+                <p id="outs">The outs paragraph.</p>
+                <p id="inning">The inning paragraph.</p>
+                <p id="bases">The bases paragraph.</p>
+                <p id="current"></p>
+            </div>
+            </b>
+        </div>
+        </center>
+        <div id="actionsDiv">
+        <nav style="float:left">
+        	<ul>
+        		<li><a>Hits</a>
+        			<ul>
+        				<li><a onclick="processAction('Walk')" style="cursor:pointer">Walk</a></li>
+        				<li><a onclick="processAction('Single')" style="cursor:pointer">Single</a></li>
+        				<li><a onclick="processAction('Double')" style="cursor:pointer">Double</a></li>
+        				<li><a onclick="processAction('Triple')" style="cursor:pointer">Triple</a></li>
+        				<li><a onclick="processAction('Home Run')" style="cursor:pointer">Home Run</a></li>
+        			</ul>
+        		</li>
+        		<li><a>Outs</a>
+        			<ul>
+        				<li><a onclick="processAction('Strikeout')" style="cursor:pointer">Strikeout</a></li>
+        				<li><a onclick="processAction('Ground Out')" style="cursor:pointer">Ground Out</a></li>
+        				<li><a onclick="processAction('Fly Out')" style="cursor:pointer">Fly Out</a></li>
+        				<li><a onclick="processAction('Pop/Foul/Line Out')" style="cursor:pointer">Pop/Foul/Line Out</a></li>
+        				<li><a onclick="processAction('LoMax')" style="cursor:pointer">LoMax</a></li>
+        			</ul>
+        		</li>
+        	</ul>
+        </nav>
+        <nav style="float:right">
+            <ul>
+        		<li><a>Misc.</a>
+        			<ul>
+        				<li><a onclick="processAction('Error')" style="cursor:pointer">Error</a></li>
+        				<li><a>Stolen Base</a>
+        				    <ul>
+        				        <li><a>Advance runners</a>
+                				    <ul>
+                				        <li><a onclick="processAction('SB_1')" style="cursor:pointer">Steal 1st to 2nd</a></li>
+                				        <li><a onclick="processAction('SB_2')" style="cursor:pointer">Steal 2nd to 3rd</a></li>
+                				        <li><a onclick="processAction('SB_3')" style="cursor:pointer">Steal 3rd to Home</a></li>
+                				    </ul>
+                				</li>
+                				<li><a>Don't advance runners</a>
+                				    <ul>
+                				        <li><a onclick="processAction('SBD_1')" style="cursor:pointer">Steal 1st to 2nd</a></li>
+                				        <li><a onclick="processAction('SBD_2')" style="cursor:pointer">Steal 2nd to 3rd</a></li>
+                				        <li><a onclick="processAction('SBD_3')" style="cursor:pointer">Steal 3rd to Home</a></li>
+                				    </ul>
+                				</li>
+        				    </ul>
+        				</li>
+        				<li><a>Caught Stealing</a>
+        				    <ul>
+        				        <li><a onclick="processAction('CS_1')" style="cursor:pointer">Caught 1st to 2nd</a></li>
+        				        <li><a onclick="processAction('CS_2')" style="cursor:pointer">Caught 2nd to 3rd</a></li>
+        				        <li><a onclick="processAction('CS_3')" style="cursor:pointer">Caught 3rd to Home</a></li>
+        				    </ul>
+        				</li>
+        				<li><a>Manual Change</a>
+        				    <ul>
+        				        <li><a>Change Outs</a>
+        				            <ul>
+        				                <li><a onclick="outsAdd(1)">Outs++</a></li>
+        				                <li><a onclick="outsAdd(-1)">Outs--</a></li>
+        				            </ul>
+        				        </li>
+        				        <li><a>Change Bases</a>
+        				            <ul>
+        				                <li><a>With Stats</a>
+                				            <ul>
+                				                <li><a onclick="processAction('AS_1')">1st to 2nd</a></li>
+                				                <li><a onclick="processAction('AS_2')">2nd to 3rd</a></li>
+                				                <li><a onclick="processAction('AS_3')">3rd to Home</a></li>
+                				            </ul>
+                				        </li>
+                				        <li><a>Without Stats (Doesn't change the score)</a>
+                				            <ul>
+                				                <li><a onclick="processAction('AN_1')">1st to 2nd</a></li>
+                				                <li><a onclick="processAction('AN_2')">2nd to 3rd</a></li>
+                				                <li><a onclick="processAction('AN_3')">3rd to Home</a></li>
+                				            </ul>
+                				        </li>
+                				        <li><a>Out at base</a>
+                				            <ul>
+                				                <li><a onclick="processAction('OB_1')">1st</a></li>
+                				                <li><a onclick="processAction('OB_2')">2nd</a></li>
+                				                <li><a onclick="processAction('OB_3')">3rd</a></li>
+                				            </ul>
+                				        </li>
+                				        <li><a>Remove base runner</a>
+                				            <ul>
+                				                <li><a onclick="processAction('RB_1')">1st</a></li>
+                				                <li><a onclick="processAction('RB_2')">2nd</a></li>
+                				                <li><a onclick="processAction('RB_3')">3rd</a></li>
+                				            </ul>
+                				        </li>
+        				            </ul>
+        				        </li>
+        				    </ul>
+        				</li>
+        			</ul>
+        		</li>
+        		<li><a>Substitutions</a>
+        			<ul>
+        				<li><a onclick="pinchHit()">Pinch Hitter</a></li>
+        				<li><a href="#">Pinch Runner</a>
+        				    <ul>
+				                <li><a onclick="pinchRun(1)">1st</a></li>
+				                <li><a onclick="pinchRun(2)">2nd</a></li>
+				                <li><a onclick="pinchRun(3)">3rd</a></li>
+        				    </ul>
+        				</li>
+        				<li><a onclick="changePitcher()">Change Pitcher</a></li>
+        			</ul>
+        		</li>
+        	</ul>
+        </nav>
+        </div>
+        <div style="clear: both;"></div>
+        <div id="player_card">
+        </div>
+        <div style='float:left'>
+            <h1 id="team1_name" class="names">Team 1</h1>
+            <div class="table-wrapper" style='float:left'>
+            <table border="1" id="team1_table" class="roster">
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Player Card</th>
+                    <th>ID</th>
+                </tr>
+            </table>
+            </div>
+            <table border="1" id="team1_lineup" class="lineup">
+                <tr>
+                    <th>Number</th>
+                    <th>Name</th>
+                    <th>X</th>
+                </tr>
+            </table>
+            <!--<p id="team1_pitcher" style="color:white">No pitcher</p>-->
+        </div>
+        <div style='float:right'>
+            <h1 id="team2_name" class="names" style="">Team 2</h1>
+            <div class="table-wrapper" style='float:right'>
+            <table border="1" id="team2_table" class="roster">
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Player Card</th>
+                    <th>ID</th>
+                </tr>
+            </table>
+            </div>
+            <table border="1" id="team2_lineup" class="lineup">
+                <tr>
+                    <th>Number</th>
+                    <th>Name</th>
+                    <th>X</th>
+                </tr>
+            </table>
+            <!--<p id="team2_pitcher" style="color:white">No pitcher</p>-->
+        </div>
+        <div style="clear: both;"></div>
+        <center>
+            <button onclick='finalizeLineups()' id='finalize'>Submit Lineups</button>
+            <!--<button onclick="reloadscripts()">Refresh Javascript</button>
+            <button onclick="resetGame()">Reset Game</button>-->
+        </center>
+    </div>
+    <div id="results" style="display:none">
+    	<center><h1 id="finalScore">Team 1 0, Team 2 0</h1></center>
+    	<center>
+            <table border="1" id="inningChart" class="inningChart">
+                <tr>
+                    <th>Score</th>
+                </tr>
+            </table>
+        </center>
+    	<div style='float:left'>
+            <div class="table-wrapper">
+            <table border="1" id="team1_playerStats" class="stats">
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                </tr>
+            </table>
+            </div>
+        </div>
+        <div style='float:right'>
+            <div class="table-wrapper">
+            <table border="1" id="team2_playerStats" class="stats">
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                </tr>
+            </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/JavaScript">
+window.onbeforeunload = function() {
+	if(inGame)
+        return "If you leave or refresh this page, you will lose all of your progress and will not be able to get it back.";
+}
+
+function toggleColumn(type, team) {
+	var classColumn = "." + type + team;
+	$(classColumn).toggle();
+}
+
+function displayPlayer(id, team_id) {
+    TEAM_ID = team_id;
+    PLAYER_ID = id;
+    $('#player_card').dialog('open');
+}
+
+function getId() {
+    var parts = window.location.search.substr(1).split("&");
+    var $_GET = {};
+    for (var i = 0; i < parts.length; i++) {
+        var temp = parts[i].split("=");
+        $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+    }
+    GAME_ID = $_GET["id"];
+}
+
+function reloadscripts() {
+	time = new Date();
+    $("#message").text("Loading scripts...");
+    $.when(
+        $.getScript("playGameHelper/genericFunctions.js"),
+        $.getScript("playGameHelper/gameFunctions.js"),
+        $.getScript("playGameHelper/serverFetching.js"),
+        $.Deferred(function( deferred ){
+            $( deferred.resolve );
+        })
+    ).done(function(){
+	    difference = Math.abs(new Date() - time);
+        $("#message").text("The scripts are loaded. (" + difference + ") ms");
+    });
+}
+
+function resetGame() {
+    outs = 0;
+    inning = 1;
+    battingTeam = 1;
+    pitchingTeam = 0;
+    inGame = true;
+    inningChart = [[0], [0]];
+    playerStats = [[], []];
+    scores = [0, 0];
+    bases = [-1, -1, -1];
+    currentBatters = [0, 0];
+    refreshScoreboard();
+    $("#message").text("The game has been reset.");
+}
+
+function begin() {
+    $.when(
+        $.getScript("playGameHelper/variables.js"),
+        $.getScript("playGameHelper/genericFunctions.js"),
+        $.getScript("playGameHelper/gameFunctions.js"),
+        $.getScript("playGameHelper/serverFetching.js"),
+        $.Deferred(function( deferred ){
+            $( deferred.resolve );
+        })
+    ).done(function(){
+        getId();
+        initGame(GAME_ID);
+    });
+}
+</script>
+</html>

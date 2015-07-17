@@ -1,0 +1,114 @@
+html {
+    font-family: Georgia, Serif;
+}
+
+button, input, select, textarea {
+    background:#398028;
+	background: linear-gradient(top, #13990E 0%, #047800 100%);  
+	background: -moz-linear-gradient(top, #13990E 0%, #047800 100%); 
+	background: -webkit-linear-gradient(top, #13990E 0%,#047800 100%);
+    border-radius:5px;
+    color:White;
+    border: 1px solid 003200;
+}
+
+input {
+   text-align:center;
+}
+
+a.linkOnClick {
+	text-decoration:underline;
+}
+
+.linkOnClick {
+	cursor:pointer;
+}
+
+.centeredP {
+	text-align:center;
+}
+
+button:disabled {
+    opacity:.5;
+}
+
+body {
+	background-image:url('http://upload.wikimedia.org/wikipedia/commons/9/9f/Wrigley_field_720.jpg');
+	background-size:cover;
+}
+
+/*body::after {
+	content: "";
+	background-image:url('http://www.keepitplanned.com/wp-content/uploads/2013/06/Wrigley-Field-Chicago-IL1.jpg');
+	background-size:cover;
+	opacity: 0.8;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	z-index: -1;
+}*/
+
+table {
+    color:#FFFFFF;
+    opacity:.95;
+    z-index:-1;
+    background-color:#00690E;
+}
+
+table a {
+    color: #FFFFFF;
+}
+
+tr:nth-child(odd) {
+    background-color:#005900;
+}
+
+tr:nth-child(even) {
+    background-color: #007800;
+}
+
+a {
+	color: white;
+}
+
+.backgroundGreen {
+	background-color:rgba(0,105,14,0.6);
+	color: white;
+}
+
+p {
+	background-color:rgba(0,105,14,0.6);
+	color: white;
+}
+
+td {
+	padding:3px;
+}
+div.buttonMenu {
+    display: table;
+    table-layout: fixed;    /* For cells of equal size */
+	background-color:#007800;
+	width:50%;
+	height:10%;
+	border-radius:10px;
+	overflow:hidden;
+}
+div.buttonMenu a {
+    display: table-cell;
+    text-align: center;
+    border-left:2px solid white;
+  	vertical-align: middle;
+  	color:white;
+  	font-size:20px;
+  	text-decoration:none;
+}
+
+div.buttonMenu a:hover {
+	background-color:#044D12;
+}
+
+.currentPage {
+	background-color:#044D12;
+}

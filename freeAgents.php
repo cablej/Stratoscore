@@ -1,0 +1,270 @@
+<?php
+include 'XMLTools.php';
+?>
+<html>
+<body>
+	<center><table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>AVG</th>
+        <th>AB</th>
+        <th>SLG</th>
+        <th>OBP</th>
+        <th>ERA</th>
+        <th>IP</th>
+        <th>H</th>
+        <th>BB</th>
+        <th># of innings he goes for</th>
+    </tr>
+    <tr>
+        <td>P.J. Walters</td>
+        <td>SP</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>5.95</td>
+        <td>39</td>
+        <td>51</td>
+        <td>18</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>P. Hernandez -- TAKEN</td>
+        <td>SP/RP</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>6.83</td>
+        <td>57</td>
+        <td>80</td>
+        <td>23</td>
+        <td>5/4</td>
+    </tr>
+    <tr>
+        <td>V. Worley</td>
+        <td>SP</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>7.21</td>
+        <td>49</td>
+        <td>82</td>
+        <td>15</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>K. Gibson</td>
+        <td>SP</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>6.53</td>
+        <td>51</td>
+        <td>69</td>
+        <td>20</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>L. Hendricks</td>
+        <td>SP/RP</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>6.85</td>
+        <td>47</td>
+        <td>67</td>
+        <td>14</td>
+        <td>5/4</td>
+    </tr>
+    <tr>
+        <td>J. Chamberlain</td>
+        <td>RP</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>4.93</td>
+        <td>42</td>
+        <td>47</td>
+        <td>26</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>K. Suzuki -- &nbsp;TAKEN</td>
+        <td>C</td>
+        <td>.222</td>
+        <td>252</td>
+        <td>.310</td>
+        <td>.283</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>J. Francoeur</td>
+        <td>RF</td>
+        <td>.208</td>
+        <td>183</td>
+        <td>.322</td>
+        <td>.249</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>A. Rosales -- TAKEN</td>
+        <td>SS/2B/1B/LF/3B</td>
+        <td>.190</td>
+        <td>147</td>
+        <td>.327</td>
+        <td>.259</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>D. Espinosa</td>
+        <td>2B/SS</td>
+        <td>.158</td>
+        <td>158</td>
+        <td>.272</td>
+        <td>.193</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>J. Valdespin -- TAKEN</td>
+        <td>RF/CF/2B/SS/LF</td>
+        <td>.188</td>
+        <td>133</td>
+        <td>.316</td>
+        <td>.250</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>D. Adams</td>
+        <td>3B/2B/1B</td>
+        <td>.193</td>
+        <td>140</td>
+        <td>.286</td>
+        <td>.252</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>J. Kubel</td>
+        <td>LF/RF</td>
+        <td>.220</td>
+        <td>241</td>
+        <td>.324</td>
+        <td>.288</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>C. Coghlan -- TAKEN</td>
+        <td>LF/CF/3B/2B/RF</td>
+        <td>.256</td>
+        <td>195</td>
+        <td>.354</td>
+        <td>.318</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>J. Pacheco</td>
+        <td>1B/C/LF</td>
+        <td>.239</td>
+        <td>247</td>
+        <td>.312</td>
+        <td>.276</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>K. Wong</td>
+        <td>2B</td>
+        <td>.153</td>
+        <td>59</td>
+        <td>.169</td>
+        <td>.194</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>J. Solano</td>
+        <td>C</td>
+        <td>.146</td>
+        <td>48</td>
+        <td>.190</td>
+        <td>.180</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>&nbsp;J. Pacheco</td>
+        <td>1B/C/LF</td>
+        <td>.239</td>
+        <td>247</td>
+        <td>.312</td>
+        <td>.276</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>J. Johnson</td>
+        <td>SP</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>6.20</td>
+        <td>81</td>
+        <td>105</td>
+        <td>30</td>
+        <td>5</td>
+    </tr>
+</table>
+	</center>
+</body>
+</html>

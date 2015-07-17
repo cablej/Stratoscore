@@ -1,0 +1,78 @@
+html {
+	font-family: 'Indie Flower', Georgia, Serif;
+}
+
+table {
+	border-collapse:collapse;
+	
+}
+
+table,th, td {
+	border: 1px solid black;
+	min-width:98%;
+}
+
+#inningChart td {
+	text-align:center;
+	font-size:32px;
+}
+
+td {
+	padding:5px;
+	/*min-width:50%;*/
+}
+
+#pitchingStats td {
+	font-size:24px;
+}
+
+#battingStats td {
+	font-size:16px;
+}
+
+.typed {
+	font-family: Serif;
+}
+
+.handwritten {
+	font-family: 'Indie Flower', Georgia, Serif;
+}
+
+a {
+	color:black;
+	text-decoration:none;
+}
+
+.left {
+	float:left;
+	margin-left:1%;
+}
+
+.right {
+	float:right;
+	margin-right:1%;
+}
+
+.tally {
+	height: 25px;
+}
+
+#i1 {
+	width:5px;
+}
+
+#i2 {
+	width:8px;
+}
+
+#i3 {
+	width:15px;
+}
+
+#i4 {
+	width:20px;
+}
+
+#i5 {
+	width:20px;
+}
