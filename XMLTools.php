@@ -48,7 +48,7 @@ function getStartsForPlayers($schedule, $team_name) {
 					$pitcherFound = true;
 					$isFirstPitcher = true;
 				}
-				if($playerNum < 9 || $player->category[0]->stat[0] >= 2 || $isFirstPitcher) {
+				if($playerNum < 9 || ($player->category[0]->stat[0] + $player->category[0]->stat[7]) >= 2 || $isFirstPitcher) {
 					$id = (string) $player["id"];
 					if(isSet($starts[$id])) $starts[$id] += 1;
 					else $starts[$id] = 1;
