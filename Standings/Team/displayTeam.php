@@ -28,7 +28,7 @@
 }
 
 table th {
-	padding:3px;
+    padding:3px;
 }
 
 #footer {
@@ -43,8 +43,8 @@ table th {
 </style>
 <center>
 <?php
-	$currentPage = 1;
-	include $prefix . 'header.php';
+    $currentPage = 1;
+    include $prefix . 'header.php';
 ?>
 </center>
 <?php
@@ -59,20 +59,20 @@ table th {
     $division = $team['division'];
     $src = $team['img'];
     
-	$numPlayers = 0;
-	foreach ($team->players->player as $player) {
-		if($player["minors"] != "true") $numPlayers++;
-	}
-	
-	$starts = getStartsForPlayers($schedule, $team_name);
+    $numPlayers = 0;
+    foreach ($team->players->player as $player) {
+        if($player["minors"] != "true") $numPlayers++;
+    }
+    
+    $starts = getStartsForPlayers($schedule, $team_name);
 
-	echo("<img src='$src' style='width:75px; position:absolute; top:3;left:3'/><h1 style=' position:absolute; top:-10;left:84'>$team_name</h1><a href='changePassword.php?name=$team_name'>Change Password</a>");
-	echo("<h2 style=' position:absolute; top:30;left:84'>$wins-$losses ($division)</h2>");
-	echo("<br>");
-	echo("<div style='height:80%; overflow:scroll; position:relative;left:20%;'>");
+    echo("<img src='$src' style='width:75px; position:absolute; top:3;left:3'/><h1 style=' position:absolute; top:-10;left:84'>$team_name</h1><a href='changePassword.php?name=$team_name'>Change Password</a>");
+    echo("<h2 style=' position:absolute; top:30;left:84'>$wins-$losses ($division)</h2>");
+    echo("<br>");
+    echo("<div style='height:80%; overflow:scroll; position:relative;left:20%;'>");
     echo("<table border='1' style='width:35%'><tr><th colspan='5'>Roster - $numPlayers Players</th></tr><tr><th colspan='5'><a href='displayMinors.php?name=$team_name'>View Minors</a></th></tr><tr><th>Name</th><th>Position</th><th>Starts</th><th>2015 Stats</th><th>Send to Minors</th></tr>");
     foreach ($team->players->player as $player) {
-    	if(isSet($player['inactive']) || $player['minors'] == "true") continue;
+        if(isSet($player['inactive']) || $player['minors'] == "true") continue;
         $id = $player['id'];
         $numStarts = $starts[(string) $id];
         if(!$numStarts) $numStarts = 0;
@@ -80,8 +80,8 @@ table th {
         $last_name = $player['last_name'];
         $player_name = $first_name . ' ' . $last_name;
         $position = $player->position;
-		$link = getPlayerBaseballReferenceLink($player);
-		$player_link = "<a href='$link' target='_blank'>$player_name</a>";
+        $link = getPlayerBaseballReferenceLink($player);
+        $player_link = "<a href='$link' target='_blank'>$player_name</a>";
         echo("<tr colspan='3'><td><a href='Player/displayPlayer.php?team=$team_name&id=$id'>$player_name</a></td><td>$position</td><td>$numStarts</td><td>$player_link</td><td><a href='toggleMinors.php?team_name=$team_name&id=$id'>Send</a></td></tr>");
     }
     echo("</table></div>");
@@ -131,41 +131,41 @@ table th {
     foreach ($team->players->player as $player) {
         $id = $player['id'];
         $player_name = $player['first_name'] . ' ' . $player['last_name'];
-	    $stats = $player->stats;
-	    $statArray = $stat_categories;
-	    $i = 0;
-	    foreach ($stats->children() as $category) {
-	        $num = 0;
-	        foreach ($category->children() as $stat) {
-	        	$statArray[$i][$num] = $stat;
-	        	if(!preg_match('/^[0-9]{1,}$/', $statLeaders[$i][$num])) {
-	        		$statLeaders[$i][$num] = $stat;
-	        		$statLeadersNames[$i][$num] = $player_name;
-	        	} else if(intval($stat) > intval($statLeaders[$i][$num])) {
-	        		$statLeaders[$i][$num] = $stat;
-	        		$statLeadersNames[$i][$num] = $player_name;
-	        	}
-	            $num++;
-	        }
-	        echo('</tbody>');
-	        $i++;
-	    }
-	    $statArray = prependAdditionalStats($statArray);
-	    if($battingAverageLeader == "" || $statArray[0][0] > $battingAverage) {
-	    	if($statArray[0][3] >= 4) {
-	    		$battingAverageLeader = $player_name;
-	    		$battingAverage = $statArray[0][0];
-	    	}
-	    }
-	    
-	    if($eraLeader == "" || $statArray[1][0] < $era) {
-	    	if($statArray[1][2] != 0) {
-	    		
-	    		$eraLeader = $player_name;
-	    		$era = $statArray[1][0];
-	    	}
-	    }
-	    
+        $stats = $player->stats;
+        $statArray = $stat_categories;
+        $i = 0;
+        foreach ($stats->children() as $category) {
+            $num = 0;
+            foreach ($category->children() as $stat) {
+                $statArray[$i][$num] = $stat;
+                if(!preg_match('/^[0-9]{1,}$/', $statLeaders[$i][$num])) {
+                    $statLeaders[$i][$num] = $stat;
+                    $statLeadersNames[$i][$num] = $player_name;
+                } else if(intval($stat) > intval($statLeaders[$i][$num])) {
+                    $statLeaders[$i][$num] = $stat;
+                    $statLeadersNames[$i][$num] = $player_name;
+                }
+                $num++;
+            }
+            echo('</tbody>');
+            $i++;
+        }
+        $statArray = prependAdditionalStats($statArray);
+        if($battingAverageLeader == "" || $statArray[0][0] > $battingAverage) {
+            if($statArray[0][3] >= 4) {
+                $battingAverageLeader = $player_name;
+                $battingAverage = $statArray[0][0];
+            }
+        }
+        
+        if($eraLeader == "" || $statArray[1][0] < $era) {
+            if($statArray[1][2] != 0) {
+                
+                $eraLeader = $player_name;
+                $era = $statArray[1][0];
+            }
+        }
+        
     }
     $homerun_name = $statLeadersNames[0][6];
     $homerun = $statLeaders[0][6];
@@ -181,8 +181,8 @@ table th {
     echo("</table>");
     echo("</div>");
     echo("
-            <form method='GET' action='createPlayer.php' style='position:absolute; left:35%; bottom:0px'>
-            <input type='text' id='first_name' name='first_name' placeholder='First Name'></input>
+            <form method='GET' action='createPlayer.php' style='position:absolute; left:28%; bottom:0px'>
+            Create Player: <input type='text' id='first_name' name='first_name' placeholder='First Name'></input>
             <input type='text' id='last_name' name='last_name' placeholder='Last Name'></input>
             <input type='text' id='position' name='position' placeholder='Position'></input>
             <input type='hidden' id='team' name='team' value='$team_name'></input>
@@ -194,45 +194,45 @@ table th {
     echo("<table border='1'><tr><th colspan='5'>Trades</th></tr><tr><th>Team</th><th>Players Sending</th><th>Players Receiving</th><th>Accept</th><th>Decline</th></tr>");
     
     if(isSet($team->trades)) {
-    	$i = 0;
-	    foreach($team->trades->trade as $trade) {
-	    	$from = $trade->from['team'];
-	    	echo("<tr><td>$from</td><td>");
-	    	$players = [];
-	    	foreach($trade->from->players->player as $playerID) {
-	    		$id = $playerID['id'];
-	    		$player = findPlayerByID($id, $from, $league);
-	    		$player_name = $player['first_name'] . " " . $player['last_name'];
-	    		$link = getPlayerBaseballReferenceLink($player);
-	    		$players[] = "<a href='$link' target='_blank'>$player_name</a>";
-	    	}
-	    	echo(implode(', ', $players));
-	    	echo("</td><td>");
-	    	$players = [];
-	    	foreach($trade->to->players->player as $playerID) {
-	    		$id = $playerID['id'];
-	    		$player = findPlayerByID($id, $team_name, $league);
-	    		$player_name = $player['first_name'] . " " . $player['last_name'];
-	    		$link = getPlayerBaseballReferenceLink($player);
-	    		$players[] = "<a href='$link' target='_blank'>$player_name</a>";
-	    	}
-	    	echo(implode(', ', $players));
-	    	echo("</td><td><a onclick='checkPassword(\"yes\", \"$team_name\", $i)' style='cursor:pointer'>Accept</a></td><td><a onclick='checkPassword(\"no\", \"$team_name\", $i)' style='cursor:pointer'>Decline</a></td></tr>");
-	    	$i++;
-	    }
+        $i = 0;
+        foreach($team->trades->trade as $trade) {
+            $from = $trade->from['team'];
+            echo("<tr><td>$from</td><td>");
+            $players = [];
+            foreach($trade->from->players->player as $playerID) {
+                $id = $playerID['id'];
+                $player = findPlayerByID($id, $from, $league);
+                $player_name = $player['first_name'] . " " . $player['last_name'];
+                $link = getPlayerBaseballReferenceLink($player);
+                $players[] = "<a href='$link' target='_blank'>$player_name</a>";
+            }
+            echo(implode(', ', $players));
+            echo("</td><td>");
+            $players = [];
+            foreach($trade->to->players->player as $playerID) {
+                $id = $playerID['id'];
+                $player = findPlayerByID($id, $team_name, $league);
+                $player_name = $player['first_name'] . " " . $player['last_name'];
+                $link = getPlayerBaseballReferenceLink($player);
+                $players[] = "<a href='$link' target='_blank'>$player_name</a>";
+            }
+            echo(implode(', ', $players));
+            echo("</td><td><a onclick='checkPassword(\"yes\", \"$team_name\", $i)' style='cursor:pointer'>Accept</a></td><td><a onclick='checkPassword(\"no\", \"$team_name\", $i)' style='cursor:pointer'>Decline</a></td></tr>");
+            $i++;
+        }
     }
     $dropdownInput = "<select name='to' id='to'>";
     foreach($league->teams->team as $team) {
-    	$tname = $team['name'];
-    	if($tname == $team_name) continue;
-    	$dropdownInput .= "<option value='" . $tname ."'>" . $tname ."</option>";
+        $tname = $team['name'];
+        if($tname == $team_name) continue;
+        $dropdownInput .= "<option value='" . $tname ."'>" . $tname ."</option>";
     }
     $dropdownInput .= "</select>";
     echo("<tr><td colspan=5 style='text-align:center'><form method='GET' action='proposeTrade.php' onsubmit='return validatePassword()'>$dropdownInput<input type='hidden' name='from' id='from' value='$team_name'></input><input type='submit' value='Propose trade'></input></td></tr></table></div>");
 ?>
 
 <?php
-	include $prefix . 'footerTools.php';
+    include $prefix . 'footerTools.php';
 ?>
 
 <script>
@@ -241,21 +241,21 @@ text_input.focus ();
 text_input.select ();
 
 function checkPassword(result, team_name, i) {
-	newlocation = 'processTrade.php?accept=' + result + '&team=' + team_name + '&num=' + i;
-	if(prompt("What is your password?") == password) {
-		window.location = newlocation;
-	} else {
-		alert("Password is incorrect.");
-	}
+    newlocation = 'processTrade.php?accept=' + result + '&team=' + team_name + '&num=' + i;
+    if(prompt("What is your password?") == password) {
+        window.location = newlocation;
+    } else {
+        alert("Password is incorrect.");
+    }
 }
 
 function validatePassword() {
-	if(prompt("What is your password?") == password) {
-		return true;
-	} else {
-		alert("Password is incorrect.");
-		return false;
-	}
+    if(prompt("What is your password?") == password) {
+        return true;
+    } else {
+        alert("Password is incorrect.");
+        return false;
+    }
 }
 </script>
 </body>
