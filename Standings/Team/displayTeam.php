@@ -42,12 +42,10 @@ table th {
 
 </style>
 <center>
-<div class='buttonMenu'>
-	<a href='../..' style='border-left:0px;'>Home</a>
-	<a href='..' class='currentPage'>Standings</a>
-	<a href='../../schedule.php'>Schedule</a>
-	<a href='../../Stats'>Stats</a>
-</div>
+<?php
+	$currentPage = 1;
+	include $prefix . 'header.php';
+?>
 </center>
 <?php
     if(!$team) {
@@ -60,21 +58,31 @@ table th {
     $losses = $team->record->losses;
     $division = $team['division'];
     $src = $team['img'];
+    
+	$numPlayers = 0;
+	foreach ($team->players->player as $player) {
+		if($player["minors"] != "true") $numPlayers++;
+	}
+	
+	$starts = getStartsForPlayers($schedule, $team_name);
+
 	echo("<img src='$src' style='width:75px; position:absolute; top:3;left:3'/><h1 style=' position:absolute; top:-10;left:84'>$team_name</h1><a href='changePassword.php?name=$team_name'>Change Password</a>");
 	echo("<h2 style=' position:absolute; top:30;left:84'>$wins-$losses ($division)</h2>");
 	echo("<br>");
-	echo("<div style='height:80%; overflow:scroll; position:relative;left:25%;'>");
-    echo("<table border='1' style='width:30%'><tr><th colspan='3'>Roster</th></tr><tr><th colspan='3'><a href='viewCards.php?name=$team_name'>View player cards</a></th></tr><tr><th>Name</th><th>Position</th><th>2013 Stats</th></tr>");
+	echo("<div style='height:80%; overflow:scroll; position:relative;left:20%;'>");
+    echo("<table border='1' style='width:35%'><tr><th colspan='5'>Roster - $numPlayers Players</th></tr><tr><th colspan='5'><a href='displayMinors.php?name=$team_name'>View Minors</a></th></tr><tr><th>Name</th><th>Position</th><th>Starts</th><th>2015 Stats</th><th>Send to Minors</th></tr>");
     foreach ($team->players->player as $player) {
-    	if(isSet($player['inactive'])) continue;
+    	if(isSet($player['inactive']) || $player['minors'] == "true") continue;
         $id = $player['id'];
+        $numStarts = $starts[(string) $id];
+        if(!$numStarts) $numStarts = 0;
         $first_name = $player['first_name'];
         $last_name = $player['last_name'];
         $player_name = $first_name . ' ' . $last_name;
         $position = $player->position;
 		$link = getPlayerBaseballReferenceLink($player);
 		$player_link = "<a href='$link' target='_blank'>$player_name</a>";
-        echo("<tr colspan='3'><td><a href='Player/displayPlayer.php?team=$team_name&id=$id'>$player_name</a></td><td>$position</td><td>$player_link</td></tr>");
+        echo("<tr colspan='3'><td><a href='Player/displayPlayer.php?team=$team_name&id=$id'>$player_name</a></td><td>$position</td><td>$numStarts</td><td>$player_link</td><td><a href='toggleMinors.php?team_name=$team_name&id=$id'>Send</a></td></tr>");
     }
     echo("</table></div>");
     echo("<div style='position:absolute; left:59%; top: 13.5%;height:40%; overflow:scroll;'>");

@@ -27,12 +27,10 @@ function confirmDelete() {
 </head>
 <body>
 <center>
-<div class='buttonMenu'>
-	<a href='../../..' style='border-left:0px;'>Home</a>
-	<a href='../..' class='currentPage'>Standings</a>
-	<a href='../../../schedule.php'>Schedule</a>
-	<a href='../../../Stats'>Stats</a>
-</div>
+<?php
+	$currentPage = 1;
+	include $prefix . 'header.php';
+?>
 </center>
 <?php
     $league = simplexml_load_file($leagueFile);
@@ -75,7 +73,7 @@ function confirmDelete() {
         </form>
         </div>
         </div>");
-    echo("<table border='1'><tr><th colspan='24'>Game log</th></tr>");
+    echo("<table border='1'><tr><th colspan='29'>Game log</th></tr>");
     
     $games = getPlayerGames($id, $schedule, $team_name);
 
@@ -119,6 +117,8 @@ function confirmDelete() {
     echo("<tr><td colspan='2'><b>Totals</b></td>");
     foreach ($stats->children() as $category) {
         $num = 0;
+        echo("<td></td><td></td>");
+        if($i == 0) echo("<td></td>");
         foreach ($category->children() as $stat) {
             $id = $stat_categories[$i][$num];
             echo("<td><b>$stat</b></td>");
@@ -138,4 +138,4 @@ function confirmDelete() {
 	include $prefix . 'footerTools.php';
 ?>
 </body>
-</html>
+</html>	

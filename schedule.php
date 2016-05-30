@@ -10,12 +10,10 @@
 </head>
 <body>
 <center>
-<div class='buttonMenu'>
-	<a href='index.php' style='border-left:0px;'>Home</a>
-	<a href='Standings'>Standings</a>
-	<a href='#' class='currentPage'>Schedule</a>
-	<a href='Stats'>Stats</a>
-</div>
+<?php
+	$currentPage = 2;
+	include $prefix . 'header.php';
+?>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <?php

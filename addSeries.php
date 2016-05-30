@@ -28,7 +28,7 @@ for($i=0; $i<$numGames; $i++) {
 
 	if("$owner1" != "$owner2") {
 		$game = $schedule->addChild('game');
-		$game->addAttribute('id', $game_id + $i);
+		$game->addAttribute('id', $game_id);
 		$game->addAttribute('started', 'false');
 		$game->addAttribute('finished', 'false');
 		$teama = $game->addChild('team');

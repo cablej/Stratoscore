@@ -21,7 +21,7 @@ if(isSet($_POST["game"])) { //can process info
     
     
     $id = $_GET['id'];
-    $game = $schedule->game[$id-1];
+    $game = getGame($id, $schedule);
     
     echo("<div style='float:right'><p>Once you have created a player, enter its name and ID here. Team is 0 for home and 1 for away.</p><input type='text' id='new_player_name' placeholder='New player name'></input><input type='text' id='new_player_ID' placeholder='New player ID'></input><input type='text' id='new_player_team' placeholder='New player team (0 or 1)'></input><button class='linkOnClick' onclick='addNewPlayer()'>Add player</button></div>");
 	

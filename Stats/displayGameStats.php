@@ -125,7 +125,7 @@ echo("</table></center>");
 
 //notes
 
-echo("<center><p id='notesText'>Notes:<br><textarea id='editnotes'></textarea><span id='notes'>" . $gameInfo[2][3] . "</span><br><button id='cancelButton' onclick='cancel()' class='linkOnClick'>Cancel</button><button id='saveButton' class='linkOnClick' onclick='save()'>Save</button><a id='notesButton' class='linkOnClick' onclick='hide()'>Edit</a></p></center>");
+echo("<center><p id='notesText'>Notes:<br><textarea id='editnotes'></textarea><span id='notes'>" . nl2br($gameInfo[2][3]) . "</span><br><button id='cancelButton' onclick='cancel()' class='linkOnClick'>Cancel</button><button id='saveButton' class='linkOnClick' onclick='save()'>Save</button><a id='notesButton' class='linkOnClick' onclick='hide()'>Edit</a></p></center>");
 
 //Prints game stats
 for($i=0; $i<count($teamNames); $i++) {

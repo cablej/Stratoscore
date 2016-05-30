@@ -52,7 +52,7 @@ if(isSet($_GET['team']) && isSet($_GET['division']) && isSet($_GET['owner'])) {
 }
 
 function isValidTeamName($team_name) {
-    $validTeams = ["bal", "bos", "nyy", "tb", "tor", "chw", "cle", "det", "kc", "min", "hou", "oak", "sea", "tex", "atl", "mia", "nym", "phi", "was", "chc", "cin", "mil", "pit", "stl", "ari", "col", "lad", "sd", "sf"];
+    $validTeams = ["bal", "bos", "nyy", "tb", "tor", "chw", "cle", "det", "kan", "min", "hou", "oak", "sea", "tex", "atl", "mia", "nym", "phi", "was", "chc", "cin", "mil", "pit", "stl", "ari", "col", "lad", "sd", "sf"];
     return in_array($team_name, $validTeams);
 }
 

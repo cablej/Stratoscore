@@ -25,10 +25,12 @@
 }
 
 #options {
+        position:fixed;
 	float:left;
 	background-color:#00690E;
 	padding:5px;
 	border-radius:3px;
+        top:10px;
 }
 
 

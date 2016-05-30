@@ -78,7 +78,7 @@ a {
 	color: white;
 }
 
-p {
+p, h1, h2, h3, h4, h5, h6 {
 	background-color:rgba(0,105,14,0.6);
 	color: white;
 }

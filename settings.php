@@ -9,13 +9,20 @@ include 'XMLTools.php';
     <title>Settings</title>
     </head>
     <body>
-        <?php
-            echo("<p>Welcome to $LEAGUE_NAME</p>");
-        ?>
-        <p><a href="index.php"><--Back to home</a></p>
-		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-		<script>
+    	<center>
+		<?php
+			$currentPage = 4;
+			include $prefix . 'header.php';
+		?>
+		<h1>Printable Downloads</h1>
+		<p><a href="Images/Uploads/X Chart.pdf">X Fielding Chart</a></p>
+		<p><a href="Images/Uploads/resting.pdf">Injury/Resting Chart</a></p>
+		<p><a href="Images/Uploads/pitcher.pdf">Pitcher Batting Cards</a></p>
+		<p><a href="Images/Uploads/scorecard.pdf">Scorecard</a></p>
+		<p><a href="Images/Uploads/rules.pdf">League Rules</a></p>
+		<h1> Misc Settings</h1>
+		<p><a href="archives.php">League archives</a></p>
+		<!--<script>
 		
 		function getCookie(cname)
 		{
@@ -52,9 +59,10 @@ include 'XMLTools.php';
 		})
 		
 		</script>
-        <p>Load pages instantly (WARNING: BUGGY): <input type='checkbox' id='instant' /></p>
+        <p>Load pages instantly (WARNING: BUGGY): <input type='checkbox' id='instant' /></p>-->
         <?php
 			include 'footerTools.php';
         ?>
+        </center>
     </body>
 </html>

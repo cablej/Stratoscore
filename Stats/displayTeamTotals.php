@@ -19,12 +19,10 @@ include $prefix . 'XMLTools.php';
     </head>
     <body>
 		<center>
-		<div class='buttonMenu'>
-			<a href='../index.php' style='border-left:0px;'>Home</a>
-			<a href='../Standings'>Standings</a>
-			<a href='../schedule.php'>Schedule</a>
-			<a href='index.php' class='currentPage'>Stats</a>
-		</div>
+		<?php
+			$currentPage = 3;
+			include $prefix . 'header.php';
+		?>
 		
 		<?php
 		

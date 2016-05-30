@@ -47,7 +47,7 @@
 	<option title='White Sox' value='chw'>White Sox</option>
 	<option title='Indians' value='cle'>Indians</option>
 	<option title='Tigers' value='det'>Tigers</option>
-	<option title='Royals' value='kc'>Royals</option>
+	<option title='Royals' value='kan'>Royals</option>
 	<option title='Twins' value='min'>Twins</option>
 	</optgroup>
     <optgroup label="AL West">

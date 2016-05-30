@@ -10,12 +10,10 @@ include $prefix . 'XMLTools.php';
     </head>
     <body>
 		<center>
-		<div class='buttonMenu'>
-			<a href='..' style='border-left:0px;'>Home</a>
-			<a href='index.php' class='currentPage'>Standings</a>
-			<a href='../schedule.php'>Schedule</a>
-			<a href='../Stats'>Stats</a>
-		</div>
+		<?php
+			$currentPage = 1;
+			include $prefix . 'header.php';
+		?>
     	<?php
     	
     	$league = getXMLatURL($leagueFile, true);

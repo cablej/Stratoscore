@@ -13,12 +13,10 @@
 <style>
 </style>
 <center>
-<div class='buttonMenu'>
-	<a href='..' style='border-left:0px;'>Home</a>
-	<a href='#' class='currentPage'>Standings</a>
-	<a href='../schedule.php'>Schedule</a>
-	<a href='../Stats'>Stats</a>
-</div>
+<?php
+	$currentPage = 1;
+	include $prefix . 'header.php';
+?>
 <?php
 
 

@@ -25,7 +25,7 @@
         }
     }
     else if($type == 'delete') {
-    	if(!inSeason($schedule, $team_name)) {
+    	//if(!inSeason($schedule, $team_name)) {
 	    	$players = $team->players;
 	    	$players = deletePlayer($players, $player);
 	    	
@@ -34,8 +34,8 @@
 	        } else {
 	            echo("<p>ERROR: COULD NOT SAVE. <a href='../displayTeam.php?name=$team_name'><--Back to team.</a></p>");
 	        }
-    	} else {
+    	/*} else {
     		echo("<p>Whoops! Your season has already started! <a href='../displayTeam.php?name=$team_name'><--Back to team.</a></p>");
-    	}
+    	}*/
     }
 ?>

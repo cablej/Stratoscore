@@ -34,12 +34,42 @@ function prependAdditionalStats($playerStats) { //Batting: BA, OBP, Slugging Pit
 	return $playerStats;
 }
 
+function getStartsForPlayers($schedule, $team_name) {
+	$starts = [];
+	foreach($schedule->game as $game) {
+		if($game["finished"] == false) continue;
+		foreach($game->team as $team) {
+			if($team["name"] != $team_name) continue;
+			$playerNum = 0;
+			$pitcherFound = false;
+			foreach($team->stats->player as $player) {
+				$isFirstPitcher = false;
+				if(!$pitcherFound && $player->category[1]->stat[0] >= 1) {
+					$pitcherFound = true;
+					$isFirstPitcher = true;
+				}
+				if($playerNum < 9 || $player->category[0]->stat[0] >= 2 || $isFirstPitcher) {
+					$id = (string) $player["id"];
+					if(isSet($starts[$id])) $starts[$id] += 1;
+					else $starts[$id] = 1;
+				}
+				$playerNum++;
+			}
+		}
+	}
+	return $starts;
+}
+
+function endingS($index) {
+	return $index == 1 ? "" : "s";
+}
+
 function getPlayerBaseballReferenceLink($player) {
 	$last5 = strtolower(substr($player['last_name'], 0, 5));
 	$first2 = strtolower(substr($player['first_name'], 0, 2));
 	$type = isPitcher($player->position) ? "pitching" : "batting";
 	$first = strtolower(substr($player['last_name'], 0, 1));
-	$link = "http://www.baseball-reference.com/players/$first/$last5" . "$first2" . "01.shtml#2013:$type" . "_standard";
+	$link = "http://www.baseball-reference.com/players/$first/$last5" . "$first2" . "01.shtml#2015:$type" . "_standard";
 	return $link;
 }
 
@@ -217,6 +247,16 @@ function lastId($league) {
 
 function findPlayerByID($id, $team_name, $league) {
 	foreach (findTeam($team_name, $league)->players->player as $player) {
+		$newid = $player['id'];
+		if(intval($id) == $newid) {
+			return $player;
+		}
+	}
+	return false;
+}
+
+function findPlayerByIDWithTeam($id, $team, $league) {
+	foreach ($team->players->player as $player) {
 		$newid = $player['id'];
 		if(intval($id) == $newid) {
 			return $player;
@@ -428,12 +468,12 @@ function getRandomPlayer($team, $except_ids = []) {
 function getLastID($schedule) {
 	$ids = array();
 	foreach($schedule->game as $game) {
-		array_push($ids, $game['id']);
+		$ids[] = (int) $game['id'];
 	}
-	asort($ids); //sorts low to high
+	sort($ids); //sorts low to high
 	$lastID = 0;
 	for($i = 0; $i<count($ids); $i++) {
-		echo($ids[$i]);
+		echo($ids[$i] . " ");
 		if($ids[$i] == $lastID + 1) {
 			$lastID = $ids[$i];
 		 } else {
@@ -564,7 +604,7 @@ function getScorecardHTML($league, $schedule, $GAME_ID, $prefix) {
 	$scorecardHTML .= "<p class='typed'>sacrifice hits:</p>";
 	$scorecardHTML .= "<p class='typed'>passed balls:</p>";
 	$scorecardHTML .= "<p class='typed'>wild pitches:</p>";
-	$scorecardHTML .= "<h4 class='typed'>COMMENTS: <span class='handwritten'>$notes</span></h3>";
+	$scorecardHTML .= "<h4 class='typed'>COMMENTS: <span class='handwritten'>" . nl2br($notes) . "</span></h3>";
 	$scorecardHTML .= "</div>";
 	
 	//Pitcher Stats

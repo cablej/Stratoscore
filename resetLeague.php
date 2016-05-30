@@ -2,7 +2,7 @@
 <head>
 <title>Reset League</title>
 <?php
-
+/*
 $prefix = "";
 include "XMLTools.php";
 
@@ -19,7 +19,7 @@ if(isSet($_GET["type"])) {
 	    simplexml_load_string("<?xml version='1.0'?><schedule><game started='false' finished='false' id='1'><team name='Cubs'><stats/><score>0</score></team><team name='White Sox'><stats/><score>0</score></team><innings/></game><game started='false' finished='false' id='2'><team name='White Sox'><stats/><score>0</score></team><team name='Cubs'><stats/><score>0</score></team><innings/></game></schedule>")->asXML($scheduleFile);
     }
     echo("<p>Reset Successful</p>");
-}
+}*/
 
 ?>
 </head>

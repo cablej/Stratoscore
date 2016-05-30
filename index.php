@@ -34,12 +34,9 @@ include 'XMLTools.php';
     </head>
     <body>
     	<center>
-		<div class='buttonMenu'>
-			<a href='#' class='currentPage' style='border-left:0px;'>Home</a>
-			<a href='Standings'>Standings</a>
-			<a href='schedule.php'>Schedule</a>
-			<a href='Stats'>Stats</a>
-		</div>
+		<?php
+			include $prefix . 'header.php'
+		?>
         <?php
         
         	echo("<br>");
@@ -55,7 +52,9 @@ include 'XMLTools.php';
 			
 			//last game
 			
-			$game = getGame(32, $schedule);//getGames($schedule, "t", "desc", 1)[0];
+			$game = getGames($schedule, "t", "desc", 1)[0];
+
+                        if(isSet($_GET["game"])) $game = getGame($_GET["game"], $schedule);
 			
 			if($game != null) {
 				
@@ -232,4 +231,4 @@ include 'XMLTools.php';
         ?>
         </center>
     </body>
-</html>
+</html>			

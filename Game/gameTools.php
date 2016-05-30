@@ -10,7 +10,7 @@
     $schedule = simplexml_load_file($scheduleFile);
     $type = $_POST['type'];
     $id = $_POST['id'];
-    $game = $schedule->game[$id-1];
+    $game = getGame($id, $schedule);
     if($type == 'gameInfo') {
         echo($game->asXML());
     } else if($type == 'getPlayers') {

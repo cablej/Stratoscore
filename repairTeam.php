@@ -50,7 +50,7 @@ foreach($schedule->game as $game) {
 	}
 }
 
-saveXMLAtURL("Leagues/strato2014/league.xml", $league, true);
+saveXMLAtURL("Leagues/strato2016/league.xml", $league, true);
 
 ?>
 <?php
